@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline
 import pandas as pd
+from flask_cors import CORS
+
 
 # Flask uygulamasını başlat
 app = Flask(__name__)
+
+CORS(app)
 
 # Hugging Face Sentiment Analysis pipeline'ını başlat
 sentiment_pipeline = pipeline("sentiment-analysis", model="finiteautomata/bertweet-base-sentiment-analysis")
@@ -26,6 +30,7 @@ def process_excel(file):
         data["score"] = [result["score"] for result in results]
         return data
     except Exception as e:
+        print(f"hataaa {(e)}")
         return {"error": f"Sentiment analizi sırasında hata oluştu: {str(e)}"}
     
 @app.route("/")
@@ -51,5 +56,5 @@ def upload_file():
 
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 5000))  # Render varsayılan olarak PORT environment variable'ını kullanır
+    port = int(os.environ.get("PORT", 5001))  # Render varsayılan olarak PORT environment variable'ını kullanır
     app.run(host="0.0.0.0", port=port)
