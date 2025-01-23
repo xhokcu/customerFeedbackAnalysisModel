@@ -1,0 +1,4 @@
+flask
+transformers
+pandas
+torch
