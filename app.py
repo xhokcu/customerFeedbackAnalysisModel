@@ -3,10 +3,8 @@ from transformers import pipeline
 import pandas as pd
 from flask_cors import CORS
 
-
 # Flask uygulamasını başlat
 app = Flask(__name__)
-
 CORS(app)
 
 # Hugging Face Sentiment Analysis pipeline'ını başlat
@@ -56,5 +54,5 @@ def upload_file():
 
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 5001))  # Render varsayılan olarak PORT environment variable'ını kullanır
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
