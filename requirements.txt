@@ -4,3 +4,4 @@ pandas
 torch
 openpyxl
 numpy
+flask_cors
